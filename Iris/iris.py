@@ -48,12 +48,13 @@ def df_explore(df):
             4. Consolidated histograms by attribute
     '''
     # Uncomment to see isolated graphics
-    # for column in df.columns.tolist()[:-2]:
-    #     plt.hist(df[column])
-    #     plt.xlabel(column)
-    #     plt.ylabel('Quantity')
-    #     plt.title('Distribution per ' + column)
-    #     plt.show()
+    for column in df.columns.tolist()[:-2]:
+        print(df.columns.tolist()[:-2])
+        plt.hist(df[column])
+        plt.xlabel(column)
+        plt.ylabel('Quantity')
+        plt.title('Distribution per ' + column)
+        plt.show()
 
     # s = list()
     # for i in range(4):
