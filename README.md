@@ -25,23 +25,19 @@ I'm currently open to work for Data Science positions since it's related to my s
 
 # Personal portolio with Data Science projects (SOON) :orange_book:
 - [x] **Pima Indians Diabetes Database** - Classification model to predict patients with diabetes - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Pima%20Indians%20Diabetes%20Database) and [Kaggle](https://www.kaggle.com/jucasoto/pima-indians-diabetes-database)
-- [ ] **Iris Database** - Regression model to predict plant categories
-- [ ] AI algorithm that distinguishes between real and fake faces (languages: JS, Flask, HTML, CSS, Python)
-- [ ]  Data Streaming and sentiment analysis with Twitter API (Python, API usage)
-- [ ]  Machine Learning algorithm for cancer detection with UCI datasets (Python or R)
-- [ ]  Exploratory analysis with government purchases in Rio Grande do Sul state and NLP techniques for detecting materials (Python)
-- [ ]  Apply filters in an image (pset4)
-- [ ]  Recover images from camera (pset4)
-- [ ]  DNA checker (pset6)
-- [ ]  Streaming Twitter data with MongoDB, Pandas and Scikit Learn (Python Fundamentos, Cap06)
-- [ ]  Projects ML/IA (Python Fundamentos, Caps09-14)
-- [ ]  BigData na pratica (R com Azure, Caps03-07)
-- [ ]  ML na pratica (R com Azure, Cap11)
-- [ ]  HackaTrouble for COVID-19 using COVID data from Brazilian orgs
-- [ ]  Common ML projects analysis (data gathering / cleaning / manipulation / exploration / feature selection and model implementation), such as:
-- [ ]  mtcars (kaggle)
-- [ ]  titanic (kaggle)
-- [ ]  MNIST Digit Classification and handwritten character recognition with OCR
+- [ ] **Iris Dataset** - Regression model to predict plant categories
+- [ ] **Mtcars Dataset** - Exploratory analysis for vehicles in US
+- [ ] **Titanic Dataset** - Creating a prediction model to evaluate probability of survival for passengers
+- [ ] **AI algorithm that distinguishes between real and fake faces (JS, Flask, HTML, CSS and Python)**
+- [ ] **Python script for Data Streaming and sentiment analysis with Twitter API (Python, MongoDB)**
+- [ ] **Machine Learning algorithm for cancer detection with UCI datasets (Python and R)**
+- [ ] **Exploratory analysis with government purchases in Rio Grande do Sul state and NLP for detecting material descriptions (Python)**
+- [ ] **C algorithm that applies filters in an image (blur, sephia, B/W and mirror)**
+- [ ] **C algorithm that recover images from SD camera card**
+- [ ] **Python algorithm that finds person by its DNA**
+- [ ] **R script for fraud detection in purchasing department**
+- [ ] **PowerBI dashboard with COVID-19 data for identifying available hospital beds in different Brazillian counties - HackaTrouble COVID-19**
+- [ ] **R script for MNIST Digit Classification and handwritten character recognition with OCR**
 
 # Blog & Writing (SOON) :writing_hand:
 
