@@ -44,7 +44,7 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 
 # My Social Networks :link:
 
-You can find me on [Kaggle][1] or [LinkedIn][2].
+You can find me on [Kaggle][1] or [LinkedIn][2]. Drop a message :smile:
 
 [1.1]: https://github.com/jrcasoto/portfolio/blob/main/assets/kaggle.png (Kaggle icon without padding)
 [2.2]: https://github.com/MartinHeinz/MartinHeinz/blob/master/linkedin-3-16.png (LinkedIn icon without padding)
