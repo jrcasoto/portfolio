@@ -5,7 +5,7 @@ I'm currently open to work for Data Science positions since it's related to my s
 
 # Technologies & Tools :computer:
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jrcasoto&layout=compact&theme=slateorange)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jrcasoto&layout=compact&theme=slateorange&hide=Makefile)](https://github.com/anuraghazra/github-readme-stats)
 
 ![](https://img.shields.io/badge/OS-Linux-informational?style=flat&logo=linux&logoColor=white&color=orange)
 ![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=blueviolet)
