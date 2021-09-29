@@ -1,7 +1,7 @@
 # Hello there, and welcome to my personal portfolio page! :wave:
 My name is João Carlos Casoto Júnior and I'm a Data Scientist. I'm from Brazil, living in São Paulo and currently working at Robert Bosch since 2017. I've already had past experiences with Data Analysis for large scale projects in different departments (Engineering, HR and Finance) and RPA development for process automation. 
 
-I'm currently open to work for Data Science positions since it's related to my study area and personal interests. My mission as a professional is helping people to optimize their daily tasks and activities, implement a data-driven mindset and to always look forward to deepening my technical knowledge and demonstrate my passion and motivation in my work :)
+I'm currently fully dedicated to Data Science since it's related to my study area and personal interests. My mission as a professional is helping people to optimize their daily tasks and activities, implement a data-driven mindset and to always look forward to deepening my technical knowledge, demonstrating my passion and motivation through my work :)
 
 # Technologies & Tools :computer:
 
