@@ -17,3 +17,7 @@ Can you build a machine learning model to accurately predict whether or not the 
 
 ### Solution
 For this project it was developed a pipeline comparing three different classification models: KNN, Logistic Regression and Random Forest. All three models were tested using cross-validation (KFold) and Logistic regression model was chosen for this problem. In addition, two optimization approaches were done in order to check if there could be any improvements in our current model: Recursive Feature Elimination (or RFE) and Random Search Parameter Tuning (RandomizedSearchCV), but changes were insignificant.
+
+You'll find the full-analysis in **Pima Indians Diabetes Database.ipynb** notebook and deployed model in /models/regrl_classifier.sav.
+
+Enjoy! :smile:
