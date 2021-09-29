@@ -34,7 +34,7 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 - [ ] **Exploratory analysis with government purchases in Rio Grande do Sul state and NLP for detecting material descriptions (Python)**
 - [ ] **C algorithm that applies filters in an image (blur, sephia, B/W and mirror)**
 - [ ] **C algorithm that recover images from SD camera card**
-- [ ] **Python algorithm that finds person by its DNA**
+- [ ] **Python algorithm that finds a person by matching its DNA**
 - [ ] **R script for fraud detection in purchasing department**
 - [ ] **PowerBI dashboard with COVID-19 data for identifying available hospital beds in different Brazillian counties - HackaTrouble COVID-19**
 - [ ] **R script for MNIST Digit Classification and handwritten character recognition with OCR**
