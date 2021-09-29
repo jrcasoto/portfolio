@@ -5,14 +5,6 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 
 # Technologies & Tools :computer:
 
-![](https://img.shields.io/badge/Tools-PowerBI-informational?style=flat&logo=powerbi&logoColor=white&color=red)
-![](https://img.shields.io/badge/Tools-Tableau-informational?style=flat&logo=tableau&logoColor=white&color=red)
-![](https://img.shields.io/badge/Tools-AzureML-informational?style=flat&logo=microsoftazure&logoColor=white&color=ff69b4)
-![](https://img.shields.io/badge/Tools-HTML-informational?style=flat&logo=html5&logoColor=white&color=ff69b4)
-![](https://img.shields.io/badge/Tools-SQLServer-informational?style=flat&logo=microsoftsqlserver&logoColor=white&color=brightgreen)
-![](https://img.shields.io/badge/Tools-SQLite-informational?style=flat&logo=sqlite&logoColor=white&color=brightgreen)
-![](https://img.shields.io/badge/Tools-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&color=brightgreen)
-
 ![](https://img.shields.io/badge/OS-Linux-informational?style=flat&logo=linux&logoColor=white&color=orange)
 ![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=blueviolet)
 ![](https://img.shields.io/badge/Code-R-informational?style=flat&logo=r&logoColor=white&color=blueviolet)
@@ -20,6 +12,15 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 ![](https://img.shields.io/badge/Code-Scala-informational?style=flat&logo=Scala&logoColor=white&color=blueviolet)
 ![](https://img.shields.io/badge/Code-Spark-informational?style=flat&logo=apachespark&logoColor=white&color=blueviolet)
 ![](https://img.shields.io/badge/Code-Spark-informational?style=flat&logo=apachespark&logoColor=white&color=blueviolet)
+![](https://img.shields.io/badge/Tools-AzureML-informational?style=flat&logo=microsoftazure&logoColor=white&color=ff69b4)
+![](https://img.shields.io/badge/Tools-HTML-informational?style=flat&logo=html5&logoColor=white&color=ff69b4)
+
+![](https://img.shields.io/badge/Tools-PowerBI-informational?style=flat&logo=powerbi&logoColor=white&color=red)
+![](https://img.shields.io/badge/Tools-Tableau-informational?style=flat&logo=tableau&logoColor=white&color=red)
+![](https://img.shields.io/badge/Tools-SQLServer-informational?style=flat&logo=microsoftsqlserver&logoColor=white&color=brightgreen)
+![](https://img.shields.io/badge/Tools-SQLite-informational?style=flat&logo=sqlite&logoColor=white&color=brightgreen)
+![](https://img.shields.io/badge/Tools-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&color=brightgreen)
+
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jrcasoto&layout=compact&theme=chartreuse-dark&hide=Makefile)](https://github.com/anuraghazra/github-readme-stats)
 
