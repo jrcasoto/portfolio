@@ -24,8 +24,8 @@ I'm currently open to work for Data Science positions since it's related to my s
 ![](https://img.shields.io/badge/Tools-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&color=brightgreen)
 
 # Personal portolio with Data Science projects (SOON) :orange_book:
-- [x] [Pima Indians Diabetes Database](https://www.kaggle.com/jucasoto/pima-indians-diabetes-database) - Classification model to predict patients with diabetes
-- [ ] [Iris Database](https://archive.ics.uci.edu/ml/datasets/iris) - Regression model to predict plant categories
+- [x] **Pima Indians Diabetes Database** - Classification model to predict patients with diabetes - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Pima%20Indians%20Diabetes%20Database) and [Kaggle](https://www.kaggle.com/jucasoto/pima-indians-diabetes-database)
+- [ ] **Iris Database** - Regression model to predict plant categories
 - [ ] AI algorithm that distinguishes between real and fake faces (languages: JS, Flask, HTML, CSS, Python)
 - [ ]  Data Streaming and sentiment analysis with Twitter API (Python, API usage)
 - [ ]  Machine Learning algorithm for cancer detection with UCI datasets (Python or R)
