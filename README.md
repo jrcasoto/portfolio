@@ -23,7 +23,7 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jrcasoto&layout=compact&theme=slateorange&hide=Makefile)](https://github.com/anuraghazra/github-readme-stats)
 
-# Personal portolio with Data Science projects :orange_book:
+# My Data Science projects :orange_book:
 - [x] **Pima Indians Diabetes Database** - Classification model to predict patients with diabetes - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Pima%20Indians%20Diabetes%20Database) and [Kaggle](https://www.kaggle.com/jucasoto/pima-indians-diabetes-database)
 - [ ] **Iris Dataset** - Regression model to predict plant categories
 - [ ] **Mtcars Dataset** - Exploratory analysis for vehicles in US
