@@ -5,7 +5,13 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 
 # Technologies & Tools :computer:
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jrcasoto&layout=compact&theme=slateorange&hide=Makefile)](https://github.com/anuraghazra/github-readme-stats)
+![](https://img.shields.io/badge/Tools-PowerBI-informational?style=flat&logo=powerbi&logoColor=white&color=red)
+![](https://img.shields.io/badge/Tools-Tableau-informational?style=flat&logo=tableau&logoColor=white&color=red)
+![](https://img.shields.io/badge/Tools-AzureML-informational?style=flat&logo=microsoftazure&logoColor=white&color=ff69b4)
+![](https://img.shields.io/badge/Tools-HTML-informational?style=flat&logo=html5&logoColor=white&color=ff69b4)
+![](https://img.shields.io/badge/Tools-SQLServer-informational?style=flat&logo=microsoftsqlserver&logoColor=white&color=brightgreen)
+![](https://img.shields.io/badge/Tools-SQLite-informational?style=flat&logo=sqlite&logoColor=white&color=brightgreen)
+![](https://img.shields.io/badge/Tools-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&color=brightgreen)
 
 ![](https://img.shields.io/badge/OS-Linux-informational?style=flat&logo=linux&logoColor=white&color=orange)
 ![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=blueviolet)
@@ -15,13 +21,7 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 ![](https://img.shields.io/badge/Code-Spark-informational?style=flat&logo=apachespark&logoColor=white&color=blueviolet)
 ![](https://img.shields.io/badge/Code-Spark-informational?style=flat&logo=apachespark&logoColor=white&color=blueviolet)
 
-![](https://img.shields.io/badge/Tools-PowerBI-informational?style=flat&logo=powerbi&logoColor=white&color=red)
-![](https://img.shields.io/badge/Tools-Tableau-informational?style=flat&logo=tableau&logoColor=white&color=red)
-![](https://img.shields.io/badge/Tools-AzureML-informational?style=flat&logo=microsoftazure&logoColor=white&color=ff69b4)
-![](https://img.shields.io/badge/Tools-HTML-informational?style=flat&logo=html5&logoColor=white&color=ff69b4)
-![](https://img.shields.io/badge/Tools-SQLServer-informational?style=flat&logo=microsoftsqlserver&logoColor=white&color=brightgreen)
-![](https://img.shields.io/badge/Tools-SQLite-informational?style=flat&logo=sqlite&logoColor=white&color=brightgreen)
-![](https://img.shields.io/badge/Tools-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&color=brightgreen)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jrcasoto&layout=compact&theme=slateorange&hide=Makefile)](https://github.com/anuraghazra/github-readme-stats)
 
 # Personal portolio with Data Science projects (SOON) :orange_book:
 - [x] **Pima Indians Diabetes Database** - Classification model to predict patients with diabetes - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Pima%20Indians%20Diabetes%20Database) and [Kaggle](https://www.kaggle.com/jucasoto/pima-indians-diabetes-database)
