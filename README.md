@@ -29,14 +29,15 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 - [X] **Real-time analysis for sentiment analysis on Twitter with Spark Streaming and Naive Bayes text Classifier (Python, Spark Streaming)** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Twitter)
 - [X] **Exploratory analysis with Rio Grande do Sul's town hall expenses for detecting fraudulent purchases (Python and NLP)** - Available on [GitHub](https://github.com/jrcasoto/data_science_brigade)
 - [X] **PowerBI dashboard with COVID-19 data for identifying available hospital beds in different Brazillian counties - HackaTrouble event for COVID-19** - Available on [GitHub](https://github.com/jrcasoto/covid-19-hackatrouble)
+- [X] **C algorithm that applies filters in an image (blur, sephia, B/W and mirror)** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/filter)
+- [X] **C algorithm that recover images from SD camera card** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/recover)
+- [X] **Python algorithm that finds a person by matching its DNA** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/dna)
 - [ ] **Iris Dataset** - Regression model to predict plant categories
 - [ ] **Mtcars Dataset** - Exploratory analysis for vehicles in US
 - [ ] **Titanic Dataset** - Creating a prediction model to evaluate probability of survival for passengers
 - [ ] **AI algorithm that distinguishes between real and fake faces (JS, Flask, HTML, CSS and Python)**
 - [ ] **Machine Learning algorithm for cancer detection with UCI datasets (Python and R)**
-- [ ] **C algorithm that applies filters in an image (blur, sephia, B/W and mirror)**
-- [ ] **C algorithm that recover images from SD camera card**
-- [ ] **Python algorithm that finds a person by matching its DNA**
+
 - [ ] **R script for fraud detection in purchasing department**
 - [ ] **R script for MNIST Digit Classification and handwritten character recognition with OCR**
 
