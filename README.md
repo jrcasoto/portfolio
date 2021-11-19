@@ -26,6 +26,7 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 
 # My Projects :orange_book:
 - [x] **Pima Indians Diabetes Database** - Classification model to predict patients with diabetes - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Pima%20Indians%20Diabetes%20Database) and [Kaggle](https://www.kaggle.com/jucasoto/pima-indians-diabetes-database)
+- [X] **Customer Churn Analysis in Telecom Industry with R** - Classification models to predict customer revocations - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/churn)
 - [X] **Real-time analysis for sentiment analysis on Twitter with Spark Streaming and Naive Bayes text Classifier (Python, Spark Streaming)** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Twitter)
 - [X] **Exploratory analysis with Rio Grande do Sul's town hall expenses for detecting fraudulent purchases (Python and NLP)** - Available on [GitHub](https://github.com/jrcasoto/data_science_brigade)
 - [X] **PowerBI dashboard with COVID-19 data for identifying available hospital beds in different Brazillian counties - HackaTrouble event for COVID-19** - Available on [GitHub](https://github.com/jrcasoto/covid-19-hackatrouble)
