@@ -1,0 +1,266 @@
+# Customer Churn Analytics 
+
+# Clients churn occurs when clients stop their relationship/contracts with a company/service.
+# It is also known as 'customer attrition'. It is used specially in Telecom department 
+# for strategic decision-making process. 
+# This code contains the entire process discovery, from data wrangling to ML models implementation.
+# This dataset has been found as an open-source dataset from IBM Sample Data Sets Portal.
+# https://www.ibm.com/communities/analytics/watson-analytics-blog/guide-to-sample-datasets/
+
+# Set working directory
+setwd("C:/Users/casoto/Documents/GitHub/portfolio/Other Projects/churn")
+getwd()
+
+
+# Loading Libraries
+library(plyr)
+library(corrplot)
+library(ggplot2)
+library(gridExtra)
+library(ggthemes)
+library(caret)
+library(MASS)
+library(randomForest)
+library(party)
+library(Rcpp)
+library(caret)
+
+##### Data Wrangling #####
+churn <- read.csv('Telco-Customer-Churn.csv', stringsAsFactors = T)
+
+dim(churn)
+
+# Raw data contains 7043 rows (clients) and 21 columns (resources). 
+# 'Churn' is our target variable.
+str(churn)
+
+# Each row represents a client and each column the attributes of this clients.
+View(churn)
+
+# Using sapply to check missing values on each column.
+# There are 11 missing values in column 'TotalCharges', which will be removed.
+sapply(churn, function(x) sum(is.na(x)))
+churn <- churn[complete.cases(churn), ]
+
+# 1. Changing "No internet service" to "No" in the following columns: 
+# "OnlineSecurity", "OnlineBackup", "DeviceProtection",
+# "TechSupport", "streamingTV" and "streamingMovies".
+
+str(churn)
+cols_recode1 <- c(10:15)
+for(i in 1:ncol(churn[,cols_recode1])) {
+  churn[,cols_recode1][,i] <- as.factor(mapvalues
+                                        (churn[,cols_recode1][,i], from =c("No internet service"),to=c("No")))
+}
+head(churn[, cols_recode1])
+
+# 2. Changing "No phone service" to "No" at column “MultipleLines”
+
+churn$MultipleLines <- as.factor(mapvalues(churn$MultipleLines, 
+                                           from=c("No phone service"),
+                                           to=c("No")))
+head(churn$MultipleLines)
+
+# 3. Minimum ternure is 1 month and maximum 72 months.
+# We can group into five ranges, like the following: 
+# “0-12”, “12–24”, “24–48”, “48–60” and “>60”
+min(churn$tenure); max(churn$tenure)
+
+group_tenure <- function(tenure){
+  if (tenure >= 0 & tenure <= 12){
+    return('0-12 Month')
+  }else if(tenure > 12 & tenure <= 24){
+    return('12-24 Month')
+  }else if (tenure > 24 & tenure <= 48){
+    return('24-48 Month')
+  }else if (tenure > 48 & tenure <=60){
+    return('48-60 Month')
+  }else if (tenure > 60){
+    return('> 60 Month')
+  }
+}
+
+churn$tenure_group <- sapply(churn$tenure,group_tenure)
+churn$tenure_group <- as.factor(churn$tenure_group)
+head(churn$tenure_group)
+
+# 4. Changing values in “SeniorCitizen” column from 0/1 to No/Yes.
+
+churn$SeniorCitizen <- as.factor(mapvalues(churn$SeniorCitizen,
+                                           from=c("0","1"),
+                                           to=c("No", "Yes")))
+
+head(churn$SeniorCitizen)
+
+# 5. Removing unwanted columns
+churn$customerID <- NULL
+churn$tenure <- NULL
+View(churn)
+
+
+#### Exploratory Analysis & Feature Selection ####
+
+# Checking correlation between quantitative variables
+numeric.var <- sapply(churn, is.numeric)
+corr.matrix <- cor(churn[,numeric.var])
+corrplot(corr.matrix, main="\n\nCorrelation Graph", method="number")
+
+
+# # There is a medium-strong correlation between Monthly Charges and Total Charges.
+# We'll remove TotalCharges column for this model consolidation (multicollinearity).
+churn$TotalCharges <- NULL
+
+
+# Barcharts for categorical columns
+p1 <- ggplot(churn, aes(x=gender)) + ggtitle("Gender") + xlab("Sexo") +
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p2 <- ggplot(churn, aes(x=SeniorCitizen)) + ggtitle("Senior Citizen") + xlab("Senior Citizen") + 
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p3 <- ggplot(churn, aes(x=Partner)) + ggtitle("Partner") + xlab("Partners") + 
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p4 <- ggplot(churn, aes(x=Dependents)) + ggtitle("Dependents") + xlab("Dependents") +
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+grid.arrange(p1, p2, p3, p4, ncol=2)
+
+
+p5 <- ggplot(churn, aes(x=PhoneService)) + ggtitle("Phone Service") + xlab("Telephony") +
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p6 <- ggplot(churn, aes(x=MultipleLines)) + ggtitle("Multiple Lines") + xlab("Multiple Lines") + 
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p7 <- ggplot(churn, aes(x=InternetService)) + ggtitle("Internet Service") + xlab("Internet Service") + 
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p8 <- ggplot(churn, aes(x=OnlineSecurity)) + ggtitle("Online Security") + xlab("Online Security") +
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+grid.arrange(p5, p6, p7, p8, ncol=2)
+
+
+p9 <- ggplot(churn, aes(x=OnlineBackup)) + ggtitle("Online Backup") + xlab("Online Backup") +
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p10 <- ggplot(churn, aes(x=DeviceProtection)) + ggtitle("Device Protection") + xlab("Device Protection") + 
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p11 <- ggplot(churn, aes(x=TechSupport)) + ggtitle("Tech Support") + xlab("Tech Support") + 
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p12 <- ggplot(churn, aes(x=StreamingTV)) + ggtitle("Streaming TV") + xlab("Streaming TV") +
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+grid.arrange(p9, p10, p11, p12, ncol=2)
+
+
+p13 <- ggplot(churn, aes(x=StreamingMovies)) + ggtitle("Streaming Movies") + xlab("Streaming Movies") +
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p14 <- ggplot(churn, aes(x=Contract)) + ggtitle("Contract") + xlab("Contract") + 
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p15 <- ggplot(churn, aes(x=PaperlessBilling)) + ggtitle("Paperless Billing") + xlab("Paperless Billing") + 
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p16 <- ggplot(churn, aes(x=PaymentMethod)) + ggtitle("Payment Method") + xlab("Payment Method") +
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+p17 <- ggplot(churn, aes(x=tenure_group)) + ggtitle("Tenure Group") + xlab("Tenure Group") +
+  geom_bar(aes(y = 100*(..count..)/sum(..count..)), width = 0.5) + ylab("%") + coord_flip() + theme_minimal()
+grid.arrange(p13, p14, p15, p16, p17, ncol=2)
+
+# All categorical variables have a wide structure and are equally distributed, 
+# therefore all columns will be maintained for further model deployment.
+
+
+##### Linear Regression Model Implementation ##### 
+
+# Split data into train and test subsets
+intrain <- createDataPartition(churn$Churn,p=0.7,list=FALSE)
+set.seed(2017)
+training <- churn[intrain,]
+testing <- churn[-intrain,]
+
+
+# Checking split size
+dim(training)
+dim(testing)
+
+
+# Training model & Model fitting
+?glm
+LogModel <- glm(Churn ~ ., family=binomial(link="logit"), data=training)
+print(summary(LogModel))
+
+
+#### Variance Analysis - ANOVA ####
+
+# The three most-relevant variables in this model are:
+# 'Contract', 'tenure_group' and 'PaperlessBilling.'
+anova(LogModel, test="Chisq")
+
+# While analyzing the variance table, we can see significant drops directly related
+# to the quantity of variables. Adding 'InternetService', 'Contract' and 'tenure_group'
+# reduces significantly the residual values. 
+# But for other variables such as 'PaymentMethod' and 'Dependents' seem to improve less
+# the current model, even though they have low p-values (checking accuracy).
+
+testing$Churn <- as.character(testing$Churn)
+testing$Churn[testing$Churn=="No"] <- "0"
+testing$Churn[testing$Churn=="Yes"] <- "1"
+fitted.results <- predict(LogModel,newdata=testing,type='response')
+fitted.results <- ifelse(fitted.results > 0.5,1,0)
+misClasificError <- mean(fitted.results != testing$Churn)
+print(paste('Logistic Regression Accuracy',1-misClasificError)) # 80% of accuracy!
+
+
+# Logistics Regression Confusion Matrix (Errors Type I and II)
+print("Logistics Regression Confusion Matrix"); table(testing$Churn, fitted.results > 0.5)
+
+
+# Odds Ratio calculation
+exp(cbind(OR=coef(LogModel), confint(LogModel)))
+
+# INTERPRETATION: For each raise (unitary) in 'Monthly Charge' there is a reduction
+# of aprox.2.5% in the probability of client revoking its contract.
+
+
+#### Decision Tree Algorithm Implementation ####
+
+# Visualização da Árvore de Decisão
+# Sample plotting using 'Contract', 'tenure_group' and PaperlessBilling' columns
+# (most relevant in model summary)
+?ctree
+tree <- ctree(Churn ~ Contract+tenure_group+PaperlessBilling, training)
+plot(tree, type='simple')
+
+
+# INTERPRETATION: For the tree used variables, Contract is the most important to
+# predict clients rotation. Checking if the client has a one-year or two-year contract
+# is also a good predictor, which brings a better stability for customer basis.
+# In other hand, the odds of revoking the contract are higher if a client has a 
+# monthly contract (right branch) with a paperless billing model.
+
+
+# Decision Tree Confusion Matrix
+# Using again all variables for predicting
+pred_tree <- predict(tree, testing)
+print("Decision Tree Confusion Matrix"); table(Predicted = pred_tree, Actual = testing$Churn)
+
+
+# Predictions
+p1 <- predict(tree, training)
+tab1 <- table(Predicted = p1, Actual = training$Churn)
+tab2 <- table(Predicted = pred_tree, Actual = testing$Churn)
+print(paste('Decision Tree Accuracy',sum(diag(tab2))/sum(tab2))) # 76% accuracy, lower than GLM
+
+
+#### Random Forest Model Implementation ####
+
+set.seed(2017)
+?randomForest
+rfModel <- randomForest(Churn ~ ., data = training)
+print(rfModel)
+plot(rfModel)
+
+# Good ratio to predict 'No', but higher error ratio for 'Yes'
+
+# Predicting with test values
+pred_rf <- predict(rfModel, testing)
+
+# Confusion Matrix
+print("Random Forest Confusion Matrix"); table(testing$Churn, pred_rf)
+
+# Recursos mais importantes
+?varImpPlot
+varImpPlot(rfModel, sort=T, n.var = 10, main = 'Top 10 Feature Importance')
+
+

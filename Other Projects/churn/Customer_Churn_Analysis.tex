@@ -1,0 +1,934 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Customer\_Churn\_Analysis.R},
+  pdfauthor={casoto},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Customer\_Churn\_Analysis.R}
+\author{casoto}
+\date{2021-11-18}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Customer Churn Analytics }
+
+\CommentTok{\# Clients churn occurs when clients stop their relationship/contracts with a company/service.}
+\CommentTok{\# It is also known as \textquotesingle{}customer attrition\textquotesingle{}. It is used specially in Telecom department }
+\CommentTok{\# for strategic decision{-}making process. }
+\CommentTok{\# This code contains the entire process discovery, from data wrangling to ML models implementation.}
+\CommentTok{\# This dataset has been found as an open{-}source dataset from IBM Sample Data Sets Portal.}
+\CommentTok{\# https://www.ibm.com/communities/analytics/watson{-}analytics{-}blog/guide{-}to{-}sample{-}datasets/}
+
+\CommentTok{\# Set working directory}
+\FunctionTok{setwd}\NormalTok{(}\StringTok{"C:/Users/casoto/Documents/GitHub/portfolio/Other Projects/churn"}\NormalTok{)}
+\FunctionTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "C:/Users/casoto/Documents/GitHub/portfolio/Other Projects/churn"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Loading Libraries}
+\FunctionTok{library}\NormalTok{(plyr)}
+\FunctionTok{library}\NormalTok{(corrplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## corrplot 0.90 loaded
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.1.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(gridExtra)}
+\FunctionTok{library}\NormalTok{(ggthemes)}
+\FunctionTok{library}\NormalTok{(caret)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Carregando pacotes exigidos: lattice
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(MASS)}
+\FunctionTok{library}\NormalTok{(randomForest)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'randomForest' was built under R version 4.1.1
+\end{verbatim}
+
+\begin{verbatim}
+## randomForest 4.6-14
+\end{verbatim}
+
+\begin{verbatim}
+## Type rfNews() to see new features/changes/bug fixes.
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'randomForest'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:gridExtra':
+## 
+##     combine
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ggplot2':
+## 
+##     margin
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(party)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Carregando pacotes exigidos: grid
+\end{verbatim}
+
+\begin{verbatim}
+## Carregando pacotes exigidos: mvtnorm
+\end{verbatim}
+
+\begin{verbatim}
+## Carregando pacotes exigidos: modeltools
+\end{verbatim}
+
+\begin{verbatim}
+## Carregando pacotes exigidos: stats4
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'modeltools'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:plyr':
+## 
+##     empty
+\end{verbatim}
+
+\begin{verbatim}
+## Carregando pacotes exigidos: strucchange
+\end{verbatim}
+
+\begin{verbatim}
+## Carregando pacotes exigidos: zoo
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'zoo'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+\end{verbatim}
+
+\begin{verbatim}
+## Carregando pacotes exigidos: sandwich
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(Rcpp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'Rcpp' was built under R version 4.1.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(caret)}
+
+\DocumentationTok{\#\#\#\#\# Data Wrangling \#\#\#\#\#}
+\NormalTok{churn }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{\textquotesingle{}Telco{-}Customer{-}Churn.csv\textquotesingle{}}\NormalTok{, }\AttributeTok{stringsAsFactors =}\NormalTok{ T)}
+
+\FunctionTok{dim}\NormalTok{(churn)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7043   21
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Raw data contains 7043 rows (clients) and 21 columns (resources). }
+\CommentTok{\# \textquotesingle{}Churn\textquotesingle{} is our target variable.}
+\FunctionTok{str}\NormalTok{(churn)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    7043 obs. of  21 variables:
+##  $ customerID      : Factor w/ 7043 levels "0002-ORFBO","0003-MKNFE",..: 5376 3963 2565 5536 6512 6552 1003 4771 5605 4535 ...
+##  $ gender          : Factor w/ 2 levels "Female","Male": 1 2 2 2 1 1 2 1 1 2 ...
+##  $ SeniorCitizen   : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ Partner         : Factor w/ 2 levels "No","Yes": 2 1 1 1 1 1 1 1 2 1 ...
+##  $ Dependents      : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 2 1 1 2 ...
+##  $ tenure          : int  1 34 2 45 2 8 22 10 28 62 ...
+##  $ PhoneService    : Factor w/ 2 levels "No","Yes": 1 2 2 1 2 2 2 1 2 2 ...
+##  $ MultipleLines   : Factor w/ 3 levels "No","No phone service",..: 2 1 1 2 1 3 3 2 3 1 ...
+##  $ InternetService : Factor w/ 3 levels "DSL","Fiber optic",..: 1 1 1 1 2 2 2 1 2 1 ...
+##  $ OnlineSecurity  : Factor w/ 3 levels "No","No internet service",..: 1 3 3 3 1 1 1 3 1 3 ...
+##  $ OnlineBackup    : Factor w/ 3 levels "No","No internet service",..: 3 1 3 1 1 1 3 1 1 3 ...
+##  $ DeviceProtection: Factor w/ 3 levels "No","No internet service",..: 1 3 1 3 1 3 1 1 3 1 ...
+##  $ TechSupport     : Factor w/ 3 levels "No","No internet service",..: 1 1 1 3 1 1 1 1 3 1 ...
+##  $ StreamingTV     : Factor w/ 3 levels "No","No internet service",..: 1 1 1 1 1 3 3 1 3 1 ...
+##  $ StreamingMovies : Factor w/ 3 levels "No","No internet service",..: 1 1 1 1 1 3 1 1 3 1 ...
+##  $ Contract        : Factor w/ 3 levels "Month-to-month",..: 1 2 1 2 1 1 1 1 1 2 ...
+##  $ PaperlessBilling: Factor w/ 2 levels "No","Yes": 2 1 2 1 2 2 2 1 2 1 ...
+##  $ PaymentMethod   : Factor w/ 4 levels "Bank transfer (automatic)",..: 3 4 4 1 3 3 2 4 3 1 ...
+##  $ MonthlyCharges  : num  29.9 57 53.9 42.3 70.7 ...
+##  $ TotalCharges    : num  29.9 1889.5 108.2 1840.8 151.7 ...
+##  $ Churn           : Factor w/ 2 levels "No","Yes": 1 1 2 1 2 2 1 1 2 1 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Each row represents a client and each column the attributes of this clients.}
+\FunctionTok{View}\NormalTok{(churn)}
+
+\CommentTok{\# Using sapply to check missing values on each column.}
+\CommentTok{\# There are 11 missing values in column \textquotesingle{}TotalCharges\textquotesingle{}, which will be removed.}
+\FunctionTok{sapply}\NormalTok{(churn, }\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(x)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       customerID           gender    SeniorCitizen          Partner 
+##                0                0                0                0 
+##       Dependents           tenure     PhoneService    MultipleLines 
+##                0                0                0                0 
+##  InternetService   OnlineSecurity     OnlineBackup DeviceProtection 
+##                0                0                0                0 
+##      TechSupport      StreamingTV  StreamingMovies         Contract 
+##                0                0                0                0 
+## PaperlessBilling    PaymentMethod   MonthlyCharges     TotalCharges 
+##                0                0                0               11 
+##            Churn 
+##                0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{churn }\OtherTok{\textless{}{-}}\NormalTok{ churn[}\FunctionTok{complete.cases}\NormalTok{(churn), ]}
+
+\CommentTok{\# 1. Changing "No internet service" to "No" in the following columns: }
+\CommentTok{\# "OnlineSecurity", "OnlineBackup", "DeviceProtection",}
+\CommentTok{\# "TechSupport", "streamingTV" and "streamingMovies".}
+
+\FunctionTok{str}\NormalTok{(churn)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    7032 obs. of  21 variables:
+##  $ customerID      : Factor w/ 7043 levels "0002-ORFBO","0003-MKNFE",..: 5376 3963 2565 5536 6512 6552 1003 4771 5605 4535 ...
+##  $ gender          : Factor w/ 2 levels "Female","Male": 1 2 2 2 1 1 2 1 1 2 ...
+##  $ SeniorCitizen   : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ Partner         : Factor w/ 2 levels "No","Yes": 2 1 1 1 1 1 1 1 2 1 ...
+##  $ Dependents      : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 2 1 1 2 ...
+##  $ tenure          : int  1 34 2 45 2 8 22 10 28 62 ...
+##  $ PhoneService    : Factor w/ 2 levels "No","Yes": 1 2 2 1 2 2 2 1 2 2 ...
+##  $ MultipleLines   : Factor w/ 3 levels "No","No phone service",..: 2 1 1 2 1 3 3 2 3 1 ...
+##  $ InternetService : Factor w/ 3 levels "DSL","Fiber optic",..: 1 1 1 1 2 2 2 1 2 1 ...
+##  $ OnlineSecurity  : Factor w/ 3 levels "No","No internet service",..: 1 3 3 3 1 1 1 3 1 3 ...
+##  $ OnlineBackup    : Factor w/ 3 levels "No","No internet service",..: 3 1 3 1 1 1 3 1 1 3 ...
+##  $ DeviceProtection: Factor w/ 3 levels "No","No internet service",..: 1 3 1 3 1 3 1 1 3 1 ...
+##  $ TechSupport     : Factor w/ 3 levels "No","No internet service",..: 1 1 1 3 1 1 1 1 3 1 ...
+##  $ StreamingTV     : Factor w/ 3 levels "No","No internet service",..: 1 1 1 1 1 3 3 1 3 1 ...
+##  $ StreamingMovies : Factor w/ 3 levels "No","No internet service",..: 1 1 1 1 1 3 1 1 3 1 ...
+##  $ Contract        : Factor w/ 3 levels "Month-to-month",..: 1 2 1 2 1 1 1 1 1 2 ...
+##  $ PaperlessBilling: Factor w/ 2 levels "No","Yes": 2 1 2 1 2 2 2 1 2 1 ...
+##  $ PaymentMethod   : Factor w/ 4 levels "Bank transfer (automatic)",..: 3 4 4 1 3 3 2 4 3 1 ...
+##  $ MonthlyCharges  : num  29.9 57 53.9 42.3 70.7 ...
+##  $ TotalCharges    : num  29.9 1889.5 108.2 1840.8 151.7 ...
+##  $ Churn           : Factor w/ 2 levels "No","Yes": 1 1 2 1 2 2 1 1 2 1 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols\_recode1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\SpecialCharTok{:}\DecValTok{15}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(churn[,cols\_recode1])) \{}
+\NormalTok{  churn[,cols\_recode1][,i] }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(mapvalues}
+\NormalTok{                                        (churn[,cols\_recode1][,i], }\AttributeTok{from =}\FunctionTok{c}\NormalTok{(}\StringTok{"No internet service"}\NormalTok{),}\AttributeTok{to=}\FunctionTok{c}\NormalTok{(}\StringTok{"No"}\NormalTok{)))}
+\NormalTok{\}}
+\FunctionTok{head}\NormalTok{(churn[, cols\_recode1])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   OnlineSecurity OnlineBackup DeviceProtection TechSupport StreamingTV
+## 1             No          Yes               No          No          No
+## 2            Yes           No              Yes          No          No
+## 3            Yes          Yes               No          No          No
+## 4            Yes           No              Yes         Yes          No
+## 5             No           No               No          No          No
+## 6             No           No              Yes          No         Yes
+##   StreamingMovies
+## 1              No
+## 2              No
+## 3              No
+## 4              No
+## 5              No
+## 6             Yes
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 2. Changing "No phone service" to "No" at column “MultipleLines”}
+
+\NormalTok{churn}\SpecialCharTok{$}\NormalTok{MultipleLines }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{mapvalues}\NormalTok{(churn}\SpecialCharTok{$}\NormalTok{MultipleLines, }
+                                           \AttributeTok{from=}\FunctionTok{c}\NormalTok{(}\StringTok{"No phone service"}\NormalTok{),}
+                                           \AttributeTok{to=}\FunctionTok{c}\NormalTok{(}\StringTok{"No"}\NormalTok{)))}
+\FunctionTok{head}\NormalTok{(churn}\SpecialCharTok{$}\NormalTok{MultipleLines)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] No  No  No  No  No  Yes
+## Levels: No Yes
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 3. Minimum ternure is 1 month and maximum 72 months.}
+\CommentTok{\# We can group into five ranges, like the following: }
+\CommentTok{\# “0{-}12”, “12–24”, “24–48”, “48–60” and “\textgreater{}60”}
+\FunctionTok{min}\NormalTok{(churn}\SpecialCharTok{$}\NormalTok{tenure); }\FunctionTok{max}\NormalTok{(churn}\SpecialCharTok{$}\NormalTok{tenure)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 72
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{group\_tenure }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(tenure)\{}
+  \ControlFlowTok{if}\NormalTok{ (tenure }\SpecialCharTok{\textgreater{}=} \DecValTok{0} \SpecialCharTok{\&}\NormalTok{ tenure }\SpecialCharTok{\textless{}=} \DecValTok{12}\NormalTok{)\{}
+    \FunctionTok{return}\NormalTok{(}\StringTok{\textquotesingle{}0{-}12 Month\textquotesingle{}}\NormalTok{)}
+\NormalTok{  \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(tenure }\SpecialCharTok{\textgreater{}} \DecValTok{12} \SpecialCharTok{\&}\NormalTok{ tenure }\SpecialCharTok{\textless{}=} \DecValTok{24}\NormalTok{)\{}
+    \FunctionTok{return}\NormalTok{(}\StringTok{\textquotesingle{}12{-}24 Month\textquotesingle{}}\NormalTok{)}
+\NormalTok{  \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (tenure }\SpecialCharTok{\textgreater{}} \DecValTok{24} \SpecialCharTok{\&}\NormalTok{ tenure }\SpecialCharTok{\textless{}=} \DecValTok{48}\NormalTok{)\{}
+    \FunctionTok{return}\NormalTok{(}\StringTok{\textquotesingle{}24{-}48 Month\textquotesingle{}}\NormalTok{)}
+\NormalTok{  \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (tenure }\SpecialCharTok{\textgreater{}} \DecValTok{48} \SpecialCharTok{\&}\NormalTok{ tenure }\SpecialCharTok{\textless{}=}\DecValTok{60}\NormalTok{)\{}
+    \FunctionTok{return}\NormalTok{(}\StringTok{\textquotesingle{}48{-}60 Month\textquotesingle{}}\NormalTok{)}
+\NormalTok{  \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (tenure }\SpecialCharTok{\textgreater{}} \DecValTok{60}\NormalTok{)\{}
+    \FunctionTok{return}\NormalTok{(}\StringTok{\textquotesingle{}\textgreater{} 60 Month\textquotesingle{}}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\NormalTok{churn}\SpecialCharTok{$}\NormalTok{tenure\_group }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(churn}\SpecialCharTok{$}\NormalTok{tenure,group\_tenure)}
+\NormalTok{churn}\SpecialCharTok{$}\NormalTok{tenure\_group }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(churn}\SpecialCharTok{$}\NormalTok{tenure\_group)}
+\FunctionTok{head}\NormalTok{(churn}\SpecialCharTok{$}\NormalTok{tenure\_group)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0-12 Month  24-48 Month 0-12 Month  24-48 Month 0-12 Month  0-12 Month 
+## Levels: > 60 Month 0-12 Month 12-24 Month 24-48 Month 48-60 Month
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 4. Changing values in “SeniorCitizen” column from 0/1 to No/Yes.}
+
+\NormalTok{churn}\SpecialCharTok{$}\NormalTok{SeniorCitizen }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{mapvalues}\NormalTok{(churn}\SpecialCharTok{$}\NormalTok{SeniorCitizen,}
+                                           \AttributeTok{from=}\FunctionTok{c}\NormalTok{(}\StringTok{"0"}\NormalTok{,}\StringTok{"1"}\NormalTok{),}
+                                           \AttributeTok{to=}\FunctionTok{c}\NormalTok{(}\StringTok{"No"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{)))}
+
+\FunctionTok{head}\NormalTok{(churn}\SpecialCharTok{$}\NormalTok{SeniorCitizen)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] No No No No No No
+## Levels: No Yes
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 5. Removing unwanted columns}
+\NormalTok{churn}\SpecialCharTok{$}\NormalTok{customerID }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\NormalTok{churn}\SpecialCharTok{$}\NormalTok{tenure }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\FunctionTok{View}\NormalTok{(churn)}
+
+
+\DocumentationTok{\#\#\#\# Exploratory Analysis \& Feature Selection \#\#\#\#}
+
+\CommentTok{\# Checking correlation between quantitative variables}
+\NormalTok{numeric.var }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(churn, is.numeric)}
+\NormalTok{corr.matrix }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(churn[,numeric.var])}
+\FunctionTok{corrplot}\NormalTok{(corr.matrix, }\AttributeTok{main=}\StringTok{"}\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{Correlation Graph"}\NormalTok{, }\AttributeTok{method=}\StringTok{"number"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Customer_Churn_Analysis_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# \# There is a medium{-}strong correlation between Monthly Charges and Total Charges.}
+\CommentTok{\# We\textquotesingle{}ll remove TotalCharges column for this model consolidation (multicollinearity).}
+\NormalTok{churn}\SpecialCharTok{$}\NormalTok{TotalCharges }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+
+
+\CommentTok{\# Barcharts for categorical columns}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{gender)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Gender"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Sexo"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{SeniorCitizen)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Senior Citizen"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Senior Citizen"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p3 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Partner)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Partner"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Partners"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p4 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Dependents)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Dependents"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Dependents"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\FunctionTok{grid.arrange}\NormalTok{(p1, p2, p3, p4, }\AttributeTok{ncol=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Customer_Churn_Analysis_files/figure-latex/unnamed-chunk-1-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p5 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{PhoneService)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Phone Service"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Telephony"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p6 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{MultipleLines)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Multiple Lines"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Multiple Lines"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p7 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{InternetService)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Internet Service"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Internet Service"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p8 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{OnlineSecurity)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Online Security"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Online Security"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\FunctionTok{grid.arrange}\NormalTok{(p5, p6, p7, p8, }\AttributeTok{ncol=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Customer_Churn_Analysis_files/figure-latex/unnamed-chunk-1-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p9 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{OnlineBackup)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Online Backup"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Online Backup"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p10 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{DeviceProtection)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Device Protection"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Device Protection"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p11 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{TechSupport)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Tech Support"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Tech Support"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p12 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{StreamingTV)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Streaming TV"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Streaming TV"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\FunctionTok{grid.arrange}\NormalTok{(p9, p10, p11, p12, }\AttributeTok{ncol=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Customer_Churn_Analysis_files/figure-latex/unnamed-chunk-1-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p13 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{StreamingMovies)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Streaming Movies"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Streaming Movies"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p14 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Contract)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Contract"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Contract"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p15 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{PaperlessBilling)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Paperless Billing"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Paperless Billing"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p16 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{PaymentMethod)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Payment Method"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Payment Method"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\NormalTok{p17 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(churn, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{tenure\_group)) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Tenure Group"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Tenure Group"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{100}\SpecialCharTok{*}\NormalTok{(..count..)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(..count..)), }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"\%"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\FunctionTok{grid.arrange}\NormalTok{(p13, p14, p15, p16, p17, }\AttributeTok{ncol=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Customer_Churn_Analysis_files/figure-latex/unnamed-chunk-1-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# All categorical variables have a wide structure and are equally distributed, }
+\CommentTok{\# therefore all columns will be maintained for further model deployment.}
+
+
+\DocumentationTok{\#\#\#\#\# Linear Regression Model Implementation \#\#\#\#\# }
+
+\CommentTok{\# Split data into train and test subsets}
+\NormalTok{intrain }\OtherTok{\textless{}{-}} \FunctionTok{createDataPartition}\NormalTok{(churn}\SpecialCharTok{$}\NormalTok{Churn,}\AttributeTok{p=}\FloatTok{0.7}\NormalTok{,}\AttributeTok{list=}\ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2017}\NormalTok{)}
+\NormalTok{training }\OtherTok{\textless{}{-}}\NormalTok{ churn[intrain,]}
+\NormalTok{testing }\OtherTok{\textless{}{-}}\NormalTok{ churn[}\SpecialCharTok{{-}}\NormalTok{intrain,]}
+
+
+\CommentTok{\# Checking split size}
+\FunctionTok{dim}\NormalTok{(training)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4924   19
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(testing)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2108   19
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Training model \& Model fitting}
+\NormalTok{?glm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## starting httpd help server ...
+\end{verbatim}
+
+\begin{verbatim}
+##  done
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LogModel }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(Churn }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{family=}\FunctionTok{binomial}\NormalTok{(}\AttributeTok{link=}\StringTok{"logit"}\NormalTok{), }\AttributeTok{data=}\NormalTok{training)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{summary}\NormalTok{(LogModel))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = Churn ~ ., family = binomial(link = "logit"), data = training)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.0013  -0.6667  -0.2907   0.6654   3.1622  
+## 
+## Coefficients:
+##                                       Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)                          -1.747053   0.996484  -1.753  0.07956 .  
+## genderMale                           -0.081369   0.077909  -1.044  0.29630    
+## SeniorCitizenYes                      0.216877   0.101833   2.130  0.03319 *  
+## PartnerYes                           -0.011426   0.093527  -0.122  0.90277    
+## DependentsYes                        -0.121198   0.107738  -1.125  0.26062    
+## PhoneServiceYes                      -0.438382   0.782336  -0.560  0.57524    
+## MultipleLinesYes                      0.291196   0.212559   1.370  0.17070    
+## InternetServiceFiber optic            0.991432   0.960861   1.032  0.30216    
+## InternetServiceNo                    -0.971144   0.974309  -0.997  0.31888    
+## OnlineSecurityYes                    -0.419123   0.214004  -1.958  0.05017 .  
+## OnlineBackupYes                      -0.199302   0.211556  -0.942  0.34615    
+## DeviceProtectionYes                   0.033693   0.211891   0.159  0.87366    
+## TechSupportYes                       -0.271461   0.216746  -1.252  0.21041    
+## StreamingTVYes                        0.329234   0.393497   0.837  0.40277    
+## StreamingMoviesYes                    0.300749   0.393174   0.765  0.44432    
+## ContractOne year                     -0.752742   0.126379  -5.956 2.58e-09 ***
+## ContractTwo year                     -1.710514   0.217752  -7.855 3.99e-15 ***
+## PaperlessBillingYes                   0.403375   0.089416   4.511 6.45e-06 ***
+## PaymentMethodCredit card (automatic) -0.092082   0.136240  -0.676  0.49911    
+## PaymentMethodElectronic check         0.299798   0.113549   2.640  0.00828 ** 
+## PaymentMethodMailed check            -0.048037   0.137539  -0.349  0.72689    
+## MonthlyCharges                       -0.004438   0.038272  -0.116  0.90769    
+## tenure_group0-12 Month                1.712675   0.207283   8.262  < 2e-16 ***
+## tenure_group12-24 Month               0.853040   0.203069   4.201 2.66e-05 ***
+## tenure_group24-48 Month               0.429287   0.184689   2.324  0.02011 *  
+## tenure_group48-60 Month               0.262122   0.199185   1.316  0.18818    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 5702.8  on 4923  degrees of freedom
+## Residual deviance: 4071.4  on 4898  degrees of freedom
+## AIC: 4123.4
+## 
+## Number of Fisher Scoring iterations: 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\# Variance Analysis {-} ANOVA \#\#\#\#}
+
+\CommentTok{\# The three most{-}relevant variables in this model are:}
+\CommentTok{\# \textquotesingle{}Contract\textquotesingle{}, \textquotesingle{}tenure\_group\textquotesingle{} and \textquotesingle{}PaperlessBilling.\textquotesingle{}}
+\FunctionTok{anova}\NormalTok{(LogModel, }\AttributeTok{test=}\StringTok{"Chisq"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Deviance Table
+## 
+## Model: binomial, link: logit
+## 
+## Response: Churn
+## 
+## Terms added sequentially (first to last)
+## 
+## 
+##                  Df Deviance Resid. Df Resid. Dev  Pr(>Chi)    
+## NULL                              4923     5702.8              
+## gender            1     0.43      4922     5702.3   0.50959    
+## SeniorCitizen     1    98.20      4921     5604.1 < 2.2e-16 ***
+## Partner           1   133.02      4920     5471.1 < 2.2e-16 ***
+## Dependents        1    37.72      4919     5433.4 8.174e-10 ***
+## PhoneService      1     0.17      4918     5433.2   0.67650    
+## MultipleLines     1     4.80      4917     5428.4   0.02845 *  
+## InternetService   2   478.04      4915     4950.4 < 2.2e-16 ***
+## OnlineSecurity    1   185.22      4914     4765.1 < 2.2e-16 ***
+## OnlineBackup      1    86.46      4913     4678.7 < 2.2e-16 ***
+## DeviceProtection  1    41.08      4912     4637.6 1.461e-10 ***
+## TechSupport       1    72.84      4911     4564.8 < 2.2e-16 ***
+## StreamingTV       1     2.30      4910     4562.5   0.12934    
+## StreamingMovies   1     0.18      4909     4562.3   0.66970    
+## Contract          2   284.88      4907     4277.4 < 2.2e-16 ***
+## PaperlessBilling  1    22.14      4906     4255.3 2.541e-06 ***
+## PaymentMethod     3    34.16      4903     4221.1 1.836e-07 ***
+## MonthlyCharges    1     0.06      4902     4221.0   0.80092    
+## tenure_group      4   149.66      4898     4071.4 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# While analyzing the variance table, we can see significant drops directly related}
+\CommentTok{\# to the quantity of variables. Adding \textquotesingle{}InternetService\textquotesingle{}, \textquotesingle{}Contract\textquotesingle{} and \textquotesingle{}tenure\_group\textquotesingle{}}
+\CommentTok{\# reduces significantly the residual values. }
+\CommentTok{\# But for other variables such as \textquotesingle{}PaymentMethod\textquotesingle{} and \textquotesingle{}Dependents\textquotesingle{} seem to improve less}
+\CommentTok{\# the current model, even though they have low p{-}values (checking accuracy).}
+
+\NormalTok{testing}\SpecialCharTok{$}\NormalTok{Churn }\OtherTok{\textless{}{-}} \FunctionTok{as.character}\NormalTok{(testing}\SpecialCharTok{$}\NormalTok{Churn)}
+\NormalTok{testing}\SpecialCharTok{$}\NormalTok{Churn[testing}\SpecialCharTok{$}\NormalTok{Churn}\SpecialCharTok{==}\StringTok{"No"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"0"}
+\NormalTok{testing}\SpecialCharTok{$}\NormalTok{Churn[testing}\SpecialCharTok{$}\NormalTok{Churn}\SpecialCharTok{==}\StringTok{"Yes"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"1"}
+\NormalTok{fitted.results }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(LogModel,}\AttributeTok{newdata=}\NormalTok{testing,}\AttributeTok{type=}\StringTok{\textquotesingle{}response\textquotesingle{}}\NormalTok{)}
+\NormalTok{fitted.results }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(fitted.results }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{misClasificError }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(fitted.results }\SpecialCharTok{!=}\NormalTok{ testing}\SpecialCharTok{$}\NormalTok{Churn)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{\textquotesingle{}Logistic Regression Accuracy\textquotesingle{}}\NormalTok{,}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{misClasificError)) }\CommentTok{\# 80\% of accuracy!}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Logistic Regression Accuracy 0.794117647058824"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Logistics Regression Confusion Matrix (Errors Type I and II)}
+\FunctionTok{print}\NormalTok{(}\StringTok{"Logistics Regression Confusion Matrix"}\NormalTok{); }\FunctionTok{table}\NormalTok{(testing}\SpecialCharTok{$}\NormalTok{Churn, fitted.results }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Logistics Regression Confusion Matrix"
+\end{verbatim}
+
+\begin{verbatim}
+##    
+##     FALSE TRUE
+##   0  1388  160
+##   1   274  286
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Odds Ratio calculation}
+\FunctionTok{exp}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\AttributeTok{OR=}\FunctionTok{coef}\NormalTok{(LogModel), }\FunctionTok{confint}\NormalTok{(LogModel)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Waiting for profiling to be done...
+\end{verbatim}
+
+\begin{verbatim}
+##                                             OR      2.5 %     97.5 %
+## (Intercept)                          0.1742869 0.02466645  1.2275219
+## genderMale                           0.9218532 0.79124249  1.0739141
+## SeniorCitizenYes                     1.2421914 1.01721518  1.5164231
+## PartnerYes                           0.9886395 0.82313873  1.1877776
+## DependentsYes                        0.8858584 0.71671144  1.0935179
+## PhoneServiceYes                      0.6450793 0.13913879  2.9900614
+## MultipleLinesYes                     1.3380268 0.88228197  2.0303798
+## InternetServiceFiber optic           2.6950904 0.41035537 17.7582909
+## InternetServiceNo                    0.3786496 0.05603601  2.5562545
+## OnlineSecurityYes                    0.6576231 0.43195659  0.9996958
+## OnlineBackupYes                      0.8193024 0.54104191  1.2401907
+## DeviceProtectionYes                  1.0342666 0.68269946  1.5669703
+## TechSupportYes                       0.7622648 0.49811451  1.1652741
+## StreamingTVYes                       1.3899037 0.64296911  3.0079874
+## StreamingMoviesYes                   1.3508704 0.62530648  2.9216458
+## ContractOne year                     0.4710732 0.36674378  0.6020642
+## ContractTwo year                     0.1807729 0.11637208  0.2737222
+## PaperlessBillingYes                  1.4968681 1.25671840  1.7844472
+## PaymentMethodCredit card (automatic) 0.9120301 0.69801152  1.1910196
+## PaymentMethodElectronic check        1.3495856 1.08108223  1.6875244
+## PaymentMethodMailed check            0.9530983 0.72812444  1.2486612
+## MonthlyCharges                       0.9955723 0.92357512  1.0731135
+## tenure_group0-12 Month               5.5437716 3.70645338  8.3576029
+## tenure_group12-24 Month              2.3467710 1.58074038  3.5062190
+## tenure_group24-48 Month              1.5361624 1.07297362  2.2148089
+## tenure_group48-60 Month              1.2996854 0.88004447  1.9230945
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# INTERPRETATION: For each raise (unitary) in \textquotesingle{}Monthly Charge\textquotesingle{} there is a reduction}
+\CommentTok{\# of aprox.2.5\% in the probability of client revoking its contract.}
+
+
+\DocumentationTok{\#\#\#\# Decision Tree Algorithm Implementation \#\#\#\#}
+
+\CommentTok{\# Visualização da Árvore de Decisão}
+\CommentTok{\# Sample plotting using \textquotesingle{}Contract\textquotesingle{}, \textquotesingle{}tenure\_group\textquotesingle{} and PaperlessBilling\textquotesingle{} columns}
+\CommentTok{\# (most relevant in model summary)}
+\NormalTok{?ctree}
+\NormalTok{tree }\OtherTok{\textless{}{-}} \FunctionTok{ctree}\NormalTok{(Churn }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Contract}\SpecialCharTok{+}\NormalTok{tenure\_group}\SpecialCharTok{+}\NormalTok{PaperlessBilling, training)}
+\FunctionTok{plot}\NormalTok{(tree, }\AttributeTok{type=}\StringTok{\textquotesingle{}simple\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Customer_Churn_Analysis_files/figure-latex/unnamed-chunk-1-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# INTERPRETATION: For the tree used variables, Contract is the most important to}
+\CommentTok{\# predict clients rotation. Checking if the client has a one{-}year or two{-}year contract}
+\CommentTok{\# is also a good predictor, which brings a better stability for customer basis.}
+\CommentTok{\# In other hand, the odds of revoking the contract are higher if a client has a }
+\CommentTok{\# monthly contract (right branch) with a paperless billing model.}
+
+
+\CommentTok{\# Decision Tree Confusion Matrix}
+\CommentTok{\# Using again all variables for predicting}
+\NormalTok{pred\_tree }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(tree, testing)}
+\FunctionTok{print}\NormalTok{(}\StringTok{"Decision Tree Confusion Matrix"}\NormalTok{); }\FunctionTok{table}\NormalTok{(}\AttributeTok{Predicted =}\NormalTok{ pred\_tree, }\AttributeTok{Actual =}\NormalTok{ testing}\SpecialCharTok{$}\NormalTok{Churn)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Decision Tree Confusion Matrix"
+\end{verbatim}
+
+\begin{verbatim}
+##          Actual
+## Predicted    0    1
+##       No  1388  345
+##       Yes  160  215
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Predictions}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(tree, training)}
+\NormalTok{tab1 }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}\AttributeTok{Predicted =}\NormalTok{ p1, }\AttributeTok{Actual =}\NormalTok{ training}\SpecialCharTok{$}\NormalTok{Churn)}
+\NormalTok{tab2 }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}\AttributeTok{Predicted =}\NormalTok{ pred\_tree, }\AttributeTok{Actual =}\NormalTok{ testing}\SpecialCharTok{$}\NormalTok{Churn)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{\textquotesingle{}Decision Tree Accuracy\textquotesingle{}}\NormalTok{,}\FunctionTok{sum}\NormalTok{(}\FunctionTok{diag}\NormalTok{(tab2))}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(tab2))) }\CommentTok{\# 76\% accuracy, lower than GLM}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Decision Tree Accuracy 0.760436432637571"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\# Random Forest Model Implementation \#\#\#\#}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2017}\NormalTok{)}
+\NormalTok{?randomForest}
+\NormalTok{rfModel }\OtherTok{\textless{}{-}} \FunctionTok{randomForest}\NormalTok{(Churn }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ training)}
+\FunctionTok{print}\NormalTok{(rfModel)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+##  randomForest(formula = Churn ~ ., data = training) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 4
+## 
+##         OOB estimate of  error rate: 20.53%
+## Confusion matrix:
+##       No Yes class.error
+## No  3247 368   0.1017981
+## Yes  643 666   0.4912147
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(rfModel)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Customer_Churn_Analysis_files/figure-latex/unnamed-chunk-1-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Good ratio to predict \textquotesingle{}No\textquotesingle{}, but higher error ratio for \textquotesingle{}Yes\textquotesingle{}}
+
+\CommentTok{\# Predicting with test values}
+\NormalTok{pred\_rf }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(rfModel, testing)}
+
+\CommentTok{\# Confusion Matrix}
+\FunctionTok{print}\NormalTok{(}\StringTok{"Random Forest Confusion Matrix"}\NormalTok{); }\FunctionTok{table}\NormalTok{(testing}\SpecialCharTok{$}\NormalTok{Churn, pred\_rf)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Random Forest Confusion Matrix"
+\end{verbatim}
+
+\begin{verbatim}
+##    pred_rf
+##       No  Yes
+##   0 1365  183
+##   1  273  287
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Recursos mais importantes}
+\NormalTok{?varImpPlot}
+\FunctionTok{varImpPlot}\NormalTok{(rfModel, }\AttributeTok{sort=}\NormalTok{T, }\AttributeTok{n.var =} \DecValTok{10}\NormalTok{, }\AttributeTok{main =} \StringTok{\textquotesingle{}Top 10 Feature Importance\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Customer_Churn_Analysis_files/figure-latex/unnamed-chunk-1-8.pdf}
+
+\end{document}
