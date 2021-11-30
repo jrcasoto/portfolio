@@ -34,7 +34,7 @@ dim(churn)
 # 'Churn' is our target variable.
 str(churn)
 
-# Each row represents a client and each column the attributes of this clients.
+# x
 View(churn)
 
 # Using sapply to check missing values on each column.
