@@ -33,12 +33,8 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 - [X] **C algorithm that applies filters in an image (blur, sephia, B/W and mirror)** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/filter)
 - [X] **C algorithm that recover images from SD camera card** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/recover)
 - [X] **Python algorithm that finds a person by matching its DNA** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/dna)
-- [ ] **Iris Dataset** - Regression model to predict plant categories
-- [ ] **Mtcars Dataset** - Exploratory analysis for vehicles in US
-- [ ] **Titanic Dataset** - Creating a prediction model to evaluate probability of survival for passengers
 - [ ] **AI algorithm that distinguishes between real and fake faces (JS, Flask, HTML, CSS and Python)**
 - [ ] **Machine Learning algorithm for cancer detection with UCI datasets (Python and R)**
-
 - [ ] **R script for fraud detection in purchasing department**
 - [ ] **R script for MNIST Digit Classification and handwritten character recognition with OCR**
 
