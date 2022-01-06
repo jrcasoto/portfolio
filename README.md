@@ -22,7 +22,7 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 ![](https://img.shields.io/badge/Tools-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&color=brightgreen)
 
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jrcasoto&layout=compact&theme=chartreuse-dark&hide=Makefile)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jrcasoto&layout=compact&theme=chartreuse-dark&hide=Makefile,html,TeX)](https://github.com/anuraghazra/github-readme-stats)
 
 # My Projects :orange_book:
 - [x] **Pima Indians Diabetes Database** - Classification model to predict patients with diabetes - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Pima%20Indians%20Diabetes%20Database) and [Kaggle](https://www.kaggle.com/jucasoto/pima-indians-diabetes-database)
