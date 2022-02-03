@@ -29,6 +29,7 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 - [X] **Customer Churn Analysis in Telecom Industry with R** - Classification models to predict customer revocations - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/churn)
 - [X] **Real-time analysis for sentiment analysis on Twitter with Spark Streaming and Naive Bayes text Classifier (Python, Spark Streaming)** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Twitter)
 - [X] **Exploratory analysis with Rio Grande do Sul's town hall expenses for detecting fraudulent purchases (Python and NLP)** - Available on [GitHub](https://github.com/jrcasoto/data_science_brigade)
+- [X] **Household Power Consumption Unsupervised Model for Identifying Customer Behaviours** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/UCI/Power%20Consumption%20Analysis)
 - [X] **PowerBI dashboard with COVID-19 data for identifying available hospital beds in different Brazillian counties - HackaTrouble event for COVID-19** - Available on [GitHub](https://github.com/jrcasoto/covid-19-hackatrouble)
 - [X] **C algorithm that applies filters in an image (blur, sephia, B/W and mirror)** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/filter)
 - [X] **C algorithm that recover images from SD camera card** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/recover)
