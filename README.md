@@ -25,7 +25,9 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jrcasoto&layout=compact&theme=chartreuse-dark&hide=Makefile,html,TeX)](https://github.com/anuraghazra/github-readme-stats)
 
 # My Projects :orange_book:
-- [x] **Pima Indians Diabetes Database** - Classification model to predict patients with diabetes - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Pima%20Indians%20Diabetes%20Database) and [Kaggle](https://www.kaggle.com/jucasoto/pima-indians-diabetes-database)
+- [X] **Classification Model for Fraud Detection** - Classification model to predict fraudulent electrical substation transactions - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/fraud)
+- [X] **Naive Bayes algorithm for breast cancer detection** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/UCI/Breast%20Cancer)
+- [X] **Pima Indians Diabetes Database** - Classification model to predict patients with diabetes - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Pima%20Indians%20Diabetes%20Database) and [Kaggle](https://www.kaggle.com/jucasoto/pima-indians-diabetes-database)
 - [X] **Customer Churn Analysis in Telecom Industry with R** - Classification models to predict customer revocations - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/churn)
 - [X] **Real-time analysis for sentiment analysis on Twitter with Spark Streaming and Naive Bayes text Classifier (Python, Spark Streaming)** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Machine%20Learning%20Repository/Kaggle/Twitter)
 - [X] **Exploratory analysis with Rio Grande do Sul's town hall expenses for detecting fraudulent purchases (Python and NLP)** - Available on [GitHub](https://github.com/jrcasoto/data_science_brigade)
@@ -35,8 +37,6 @@ I'm currently fully dedicated to Data Science since it's related to my study are
 - [X] **C algorithm that recover images from SD camera card** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/recover)
 - [X] **Python algorithm that finds a person by matching its DNA** - Available on [GitHub](https://github.com/jrcasoto/portfolio/tree/main/Other%20Projects/dna)
 - [ ] **AI algorithm that distinguishes between real and fake faces (JS, Flask, HTML, CSS and Python)**
-- [ ] **Machine Learning algorithm for cancer detection with UCI datasets (Python and R)**
-- [ ] **R script for fraud detection in purchasing department**
 - [ ] **R script for MNIST Digit Classification and handwritten character recognition with OCR**
 
 # Blog & Writing (SOON) :writing_hand:
